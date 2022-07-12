@@ -38,6 +38,16 @@ defmodule Guess do
     IO.puts(
       "\n*************************\nYou got it #{count} guess! The number was #{picked_num}\n*************************\n"
     )
+
+    show_score()
+  end
+
+  def show_score() do
+    %{
+      (1..1) => "You're a mind rider!",
+      (1..4) => "Most impresive",
+      (3..6) => "You can do better than that"
+    }
   end
 
   def pickup_number(level) do
