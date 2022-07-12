@@ -10,7 +10,6 @@ defmodule Guess do
     IO.puts("Let's play Guess the Number")
 
     IO.gets("Pick a difficulty level: (1) Easy, (2) Medium, (3) Hard: ")
-    |> Integer.parse()
     |> parse_input()
     |> get_range()
     |> Enum.random()
@@ -23,6 +22,12 @@ defmodule Guess do
   end
 
   def parse_input({num, _}), do: num
+
+  def parse_input(data) do
+    data
+    |> Integer.parse()
+    |> parse_input()
+  end
 
   def get_range(level) do
     case level do
