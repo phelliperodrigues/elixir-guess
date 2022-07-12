@@ -41,6 +41,10 @@ defmodule Guess do
     show_score(count)
   end
 
+  def show_score(guesses) when guesses > 6 do
+    IO.puts("Better luck next time!")
+  end
+
   def show_score(guesses) do
     {_, msg} =
       %{
