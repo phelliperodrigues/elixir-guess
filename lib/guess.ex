@@ -10,14 +10,34 @@ defmodule Guess do
     IO.puts("Let's play Guess the Number")
 
     IO.gets("Pick a difficulty level: (1) Easy, (2) Medium, (3) Hard: ")
-    |> pickup_number()
     |> parse_input()
+    |> pickup_number()
+    |> play()
     |> IO.inspect()
   end
 
   def play(picked_num) do
     IO.gets("I have my number. What's your guess? ")
     |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(usr_guess, picked_num) when usr_guess > picked_num do
+    IO.gets("Too high. Guess again: ")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(usr_guess, picked_num) when usr_guess < picked_num do
+    IO.gets("Too low. Guess again: ")
+    |> parse_input()
+    |> guess(picked_num)
+  end
+
+  def guess(_usr_guess, picked_num) do
+    IO.puts(
+      "\n*************************\nYou got it! The number was #{picked_num}\n*************************\n"
+    )
   end
 
   def pickup_number(level) do
